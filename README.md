@@ -66,6 +66,8 @@ The user can also utilize the command `ctrl D` which will just exit. When the co
 
 ## Files
 * `README.md` : Current file, contains information about this project
+* `Authors`: File with list of contributing authors
+* `man_turtleshell`: File for executing man page on the turtle shell
 * `holberton.h` : Header file, contains all prototypes for funcitons used, as well as libriaries
 
 
