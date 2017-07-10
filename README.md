@@ -1,6 +1,6 @@
 <p align="center">
 
-  <img src="turtle.png" width="400\"/>
+  <img src="turtle.png" width="300\"/>
 
 <br>
 
