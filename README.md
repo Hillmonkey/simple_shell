@@ -1,4 +1,4 @@
-<h1><p align="center">Turtle Shell- The simple shell</h1></p></font>
+<h1><p align="center">Turtle Shell</h1></p></font>
 
 
 
