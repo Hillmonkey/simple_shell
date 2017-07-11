@@ -1,7 +1,7 @@
 #include "holberton.h"
 /**
 ** errors - writes error depending on the case letter
-** @error_msg: error letter that goes with perror message 
+** @error_msg: error letter that goes with perror message
 ** Return: void
 **/
 
@@ -10,16 +10,15 @@ void errors(int error_msg)
 
    /* local variable definition */
 
-	switch(error_msg) 
+	switch (error_msg)
 	{
 	case 'A':
 		write(stderr, ERROR_FORK, _strlen(ERROR_FORK));
 		perror("Error");
 		break;
-      
 
 	case 'B':
-         	perror("Error");
+		perror("Error");
 		break;
 
 	case 'C':
@@ -30,11 +29,9 @@ void errors(int error_msg)
 	case 'D':
 		write(stderr, ERROR_PATH, _strlen(ERROR_PATH));
 		break;
-      	
-      	
-      	
-	default :
-         	 return;
-   	}
+
+	default:
+		return;
+	}
 
 }
