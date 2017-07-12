@@ -1,12 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <string.h>
-#define UNUSED(x) (void)(x)
-#define DELIM "\n \t"
-
 #include "holberton.h"
 
 /**
@@ -22,9 +13,11 @@ int main(void)
 	size_t linesize = 0;
 	char *linebuf = NULL;
 	char *my_argv[2];
+	/* struct stat buf; */
 
 	do {
-		printf("($) ");
+		prompt(STDOUT_FILENO);
+		/* printf("($) "); */
 		linelen = getline(&linebuf, &linesize, stdin);
 		my_argv[0] = strtok(linebuf, DELIM);
 		my_argv[1] = NULL;
