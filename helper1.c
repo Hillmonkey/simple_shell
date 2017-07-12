@@ -70,3 +70,14 @@ int _strlen(char *s)
 	}
 	return (i);
 }
+
+/**
+ * _puts - functions like puts, but newline must be explicitly included in str
+ *         string sent to stdout
+ * @str: string to be printed
+ * Return: void
+ **/
+void _puts(char *str)
+{
+	write(STDOUT_FILENO, str, _strlen(str));
+}
