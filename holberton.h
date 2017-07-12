@@ -40,7 +40,7 @@ int init_Cptr_buffer(char **buffer, int bufsize);
 void errors(char error_msg);
 
 /* helper3.c */
-/* int prompt(int fd, struct stat buf); */
-int prompt(int fd);
+/* int prompt(struct stat buf); */
+int prompt(int fd, struct stat buf);
 
 #endif /* HOLBER_H */

@@ -13,10 +13,11 @@ int main(void)
 	size_t linesize = 0;
 	char *linebuf = NULL;
 	char *my_argv[2];
-	/* struct stat buf; */
+	struct stat sb;
 
 	do {
-		prompt(STDOUT_FILENO);
+		/* prompt(sb); */
+		prompt(1, sb);
 		/* printf("($) "); */
 		linelen = getline(&linebuf, &linesize, stdin);
 		my_argv[0] = strtok(linebuf, DELIM);
