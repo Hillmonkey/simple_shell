@@ -12,7 +12,7 @@ int main(void)
 	ssize_t linelen = 0;
 	size_t linesize = 0;
 	char *linebuf = NULL;
-	char *my_argv[2];
+	char *my_argv[2], char *tokens[BUFSIZE];
 	struct stat sb;
 
 	do {
@@ -20,8 +20,11 @@ int main(void)
 		prompt(1, sb);
 		/* printf("($) "); */
 		linelen = getline(&linebuf, &linesize, stdin);
+		tokens = tokenize(&linebuf);
+		/*
 		my_argv[0] = strtok(linebuf, DELIM);
 		my_argv[1] = NULL;
+		*/
 		/* printf("linebuf = %s", linebuf); */
 		if (linelen > 0)
 		{
@@ -43,6 +46,7 @@ int main(void)
 		else
 			printf("\n");
 	} while (linelen > 0); /* linelen= 18446744073709551615 ??? */
+
 	/* printf("linelen = %lu\n", linelen); */
 	free(linebuf);
 	linebuf = NULL;

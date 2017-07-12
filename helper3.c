@@ -31,3 +31,20 @@ int prompt(int fd, struct stat buf)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ *
+ *
+ *
+ **/
+char **tokenize(char *str)
+{
+
+	char *tokens[BUFSIZE], *tmp;
+
+	tmp = tokens[0] = strtok(str, DELIM);	
+	for (i = 1; tmp; i++)
+	{
+		tokens[i] = tmp = strtok(NULL, DELIM);
+	}
+	return (tokens);
+}

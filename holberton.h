@@ -42,5 +42,6 @@ void errors(char error_msg);
 /* helper3.c */
 /* int prompt(struct stat buf); */
 int prompt(int fd, struct stat buf);
+char **tokenize(char **str);
 
 #endif /* HOLBER_H */
