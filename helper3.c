@@ -3,12 +3,31 @@
 /**
  * prompt - prints prompt to stdout, but only in interactive mode
  * @fd: file descriptor (typically 1 for stdout)
+ * @sb: the file stat struct (see man fstat)
  * Return: EXIT_SUCCESS
  **/
 
-int prompt(int fd)
+/*
+int prompt(struct stat sb)
 {
-	if (isatty(fd))
+	if ((sb.st_mode & S_IFMT) != S_IFIFO)
 		_puts(PROMPT);
 	return (EXIT_SUCCESS);
 }
+*/
+
+/**
+ * prompt - checks mode and prints prompt if in interactive mode
+ * @fd: file stream
+ * @buf: buffer
+ * Return: zero for success
+**/
+int prompt(int fd, struct stat buf)
+{
+	fstat(fd, &buf);
+
+	if (S_ISCHR(buf.st_mode))
+		_puts(PROMPT);
+	return (EXIT_SUCCESS);
+}
+
