@@ -5,7 +5,7 @@
 ** Return: void
 **/
 
-void errors(int error_msg)
+void errors(char error_msg)
 {
 
    /* local variable definition */
@@ -13,7 +13,7 @@ void errors(int error_msg)
 	switch (error_msg)
 	{
 	case 'A':
-		write(stderr, ERROR_FORK, _strlen(ERROR_FORK));
+		write(FILENO_STDERR, ERROR_FORK, _strlen(ERROR_FORK));
 		perror("Error");
 		break;
 
@@ -22,12 +22,12 @@ void errors(int error_msg)
 		break;
 
 	case 'C':
-		write(stderr, ERROR_MALLOC, _strlen(ERROR_FORK));
+		write(FILENO_STDERR, ERROR_MALLOC, _strlen(ERROR_FORK));
 		break;
 
 
 	case 'D':
-		write(stderr, ERROR_PATH, _strlen(ERROR_PATH));
+		write(FILENO_STDERR, ERROR_PATH, _strlen(ERROR_PATH));
 		break;
 
 	default:
