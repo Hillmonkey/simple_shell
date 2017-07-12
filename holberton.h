@@ -23,11 +23,12 @@
 
 extern char **environ;
 
-/* helper_functions.c */
+/* helper1.c */
 int _strcmp(char *s1, char *s2);
 int str_eval(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
+void _puts(char *str);
 
 /* helper2.c */
 char *_strdup(char *str);
@@ -37,5 +38,9 @@ int init_Cptr_buffer(char **buffer, int bufsize);
 
 /* error_switch.c */
 void errors(char error_msg);
+
+/* helper3.c */
+/* int prompt(int fd, struct stat buf); */
+int prompt(int fd);
 
 #endif /* HOLBER_H */
