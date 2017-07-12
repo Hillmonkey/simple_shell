@@ -2,9 +2,10 @@
 
 /**
 **_getline - get user input
-** @fp: buffer 
+** @fp: buffer
 ** Return: input
 **/
+
 char *_getline(FILE *fp)
 {
 	char *line = NULL;
@@ -16,5 +17,5 @@ char *_getline(FILE *fp)
 		free(line);
 		exit(EXIT_SUCCESS);
 	}
-	return(line);
+	return (line);
 }
