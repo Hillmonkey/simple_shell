@@ -5,7 +5,6 @@
 #include <sys/wait.h>
 #include <string.h>
 #define UNUSED(x) (void)(x)
-#define DELIM "\n \t"
 
 #include "holberton.h"
 

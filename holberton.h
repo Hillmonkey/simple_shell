@@ -38,4 +38,8 @@ int init_Cptr_buffer(char **buffer, int bufsize);
 /* error_switch.c */
 void errors(char error_msg);
 
+/* prompt.c */
+void prompt(int fd, struct stat buff);
+void _puts(char *str);
+
 #endif /* HOLBER_H */

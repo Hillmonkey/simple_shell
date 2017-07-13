@@ -1,8 +1,8 @@
-#include holberton.h
+#include "holberton.h"
 /**
 **prompt - interactive or non interactive
 **@fd: stream
-**@buffer: buffer
+**@buff: buffer
 **Return: void
 **/
 void prompt(int fd, struct stat buff)
@@ -23,6 +23,6 @@ void _puts(char *str)
 
 	len = _strlen(str);
 
-	write(stderr, str, len);
+	write(STDERR_FILENO, str, len);
 
 }

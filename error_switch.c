@@ -13,7 +13,7 @@ void errors(char error_msg)
 	switch (error_msg)
 	{
 	case 'A':
-		write(FILENO_STDERR, ERROR_FORK, _strlen(ERROR_FORK));
+		write(STDERR_FILENO, ERROR_FORK, _strlen(ERROR_FORK));
 		perror("Error");
 		break;
 
@@ -22,12 +22,12 @@ void errors(char error_msg)
 		break;
 
 	case 'C':
-		write(FILENO_STDERR, ERROR_MALLOC, _strlen(ERROR_FORK));
+		write(STDERR_FILENO, ERROR_MALLOC, _strlen(ERROR_MALLOC));
 		break;
 
 
 	case 'D':
-		write(FILENO_STDERR, ERROR_PATH, _strlen(ERROR_PATH));
+		write(STDERR_FILENO, ERROR_PATH, _strlen(ERROR_PATH));
 		break;
 
 	default:
