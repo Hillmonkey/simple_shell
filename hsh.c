@@ -11,21 +11,17 @@ int main(void)
 	int status;
 	ssize_t linelen = 0;
 	size_t linesize = 0;
-	char *linebuf = NULL;
-	char *my_argv[2], char *tokens[BUFSIZE];
+	char **tokens;
 	struct stat sb;
+	char *linebuf = NULL;
 
+	tokens = malloc(BUFSIZE * sizeof(char *));
 	do {
 		/* prompt(sb); */
-		prompt(1, sb);
+		prompt(STDOUT_FILENO, sb);
 		/* printf("($) "); */
 		linelen = getline(&linebuf, &linesize, stdin);
-		tokens = tokenize(&linebuf);
-		/*
-		my_argv[0] = strtok(linebuf, DELIM);
-		my_argv[1] = NULL;
-		*/
-		/* printf("linebuf = %s", linebuf); */
+		tokens = tokenize(&linebuf, tokens);
 		if (linelen > 0)
 		{
 			switch (pid = fork())
@@ -33,7 +29,7 @@ int main(void)
 				case -1:
 					perror("fork()");
 				case 0: /* child */
-					status = execve(my_argv[0], my_argv, NULL);
+					status = execve(tokens[0], tokens, NULL);
 					exit(status);
 				default: /* parent */
 					if (waitpid(pid, &status, 0) < 0)

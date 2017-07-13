@@ -32,16 +32,16 @@ int prompt(int fd, struct stat buf)
 }
 
 /**
- *
+ * tokenize
  *
  *
  **/
-char **tokenize(char *str)
+char **tokenize(char **str, char **tokens)
 {
+	int i;
+	char *tmp;
 
-	char *tokens[BUFSIZE], *tmp;
-
-	tmp = tokens[0] = strtok(str, DELIM);	
+	tmp = tokens[0] = strtok(*str, DELIM);	
 	for (i = 1; tmp; i++)
 	{
 		tokens[i] = tmp = strtok(NULL, DELIM);
