@@ -21,9 +21,10 @@ int main(void)
 	size_t linesize = 0;
 	char *linebuf = NULL;
 	char *my_argv[2];
+	struct stat buf;	
 
 	do {
-		printf("($) ");
+		prompt(STDIN_FILENO, buf);
 		linelen = getline(&linebuf, &linesize, stdin);
 		my_argv[0] = strtok(linebuf, DELIM);
 		my_argv[1] = NULL;
@@ -47,7 +48,7 @@ int main(void)
 		}
 		else
 			printf("\n");
-	} while (linelen > 0); /* linelen= 18446744073709551615 ??? */
+	}while (linelen > 0); /* linelen= 18446744073709551615 ??? */
 	/* printf("linelen = %lu\n", linelen); */
 	free(linebuf);
 	linebuf = NULL;
