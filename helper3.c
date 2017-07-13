@@ -41,7 +41,7 @@ char **tokenize(char **str, char **tokens)
 	int i;
 	char *tmp;
 
-	tmp = tokens[0] = strtok(*str, DELIM);	
+	tmp = tokens[0] = strtok(*str, DELIM);
 	for (i = 1; tmp; i++)
 	{
 		tokens[i] = tmp = strtok(NULL, DELIM);
