@@ -30,6 +30,11 @@ extern char **environ;
  * @path: a copy of path from environ or envp
  * @path_tokens: array of pointers to tokens in path
  * @full_path: concat of path, slash, and executable file
+ * @linelen:
+ * @linesize: receives allocated size from getline
+ * @status: status to exit with
+ * @count: number of lines executed by shell (returned on exit??)
+ * @buf: exists to pass to pass to fstat
  **/
 
 typedef struct shenv {
@@ -43,6 +48,8 @@ typedef struct shenv {
 	size_t linesize;
 	/* char *my_argv[2]; */
 	int status;
+	int count;
+	struct stat buf;
 	} shenv_t;
 
 /* helper_functions.c */
