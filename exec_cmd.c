@@ -28,8 +28,6 @@ void exec_cmd(shenv_t *se)
 				}
 		}
 	}
-	else
-		if (is_interactive(STDIN_FILENO, se->buf))
-			printf("\n"); /* TODO: do this only if interactive */
-
+	else if (is_interactive(STDIN_FILENO, se->buf))
+		printf("\n");
 }

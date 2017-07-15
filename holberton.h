@@ -24,20 +24,22 @@
 extern char **environ;
 
 /**
- * shenv_t - shell environment variables
+ * struct shenv - shell environment variables
+ * @pid: process id
  * @linebuf: obtained by getline
  * @av: argv passed into main (copy or original?)
  * @path: a copy of path from environ or envp
  * @path_tokens: array of pointers to tokens in path
  * @full_path: concat of path, slash, and executable file
- * @linelen:
+ * @linelen: line length return val of getline
  * @linesize: receives allocated size from getline
  * @status: status to exit with
  * @count: number of lines executed by shell (returned on exit??)
  * @buf: exists to pass to pass to fstat
  **/
 
-typedef struct shenv {
+typedef struct shenv
+{
 	pid_t pid;
 	char *linebuf;
 	char **av;
@@ -49,7 +51,7 @@ typedef struct shenv {
 	/* char *my_argv[2]; */
 	int status;
 	int count;
-	
+
 	struct stat buf;
 	} shenv_t;
 
