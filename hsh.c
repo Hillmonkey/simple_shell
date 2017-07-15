@@ -1,32 +1,28 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <string.h>
-#define UNUSED(x) (void)(x)
-
 #include "holberton.h"
 
 /**
- * main - super simple shell
- * Return: -1 on error status, 0 on normal execution
+ * main - simple shell, modelled after /bin/sh
+ * Return: -1 on getline error, else # of commands executed by shell
  */
 
-int main(void)
+int main(int ac, char**av)
 {
 	pid_t pid;
 	int status;
+	int count = 0;
 	ssize_t linelen = 0;
 	size_t linesize = 0;
-	char *linebuf = NULL;
+	/* char *linebuf = NULL; */
 	char *my_argv[2];
-	struct stat buf;	
+	struct stat buf; /* ?? put in shell_env ?? */
+	shenv_t shell_env;
+
+	init_env(&shell_env);
 
 	do {
 		prompt(STDIN_FILENO, buf);
-		linelen = getline(&linebuf, &linesize, stdin);
-		my_argv[0] = strtok(linebuf, DELIM);
+		linelen = getline(&(shell_env.linebuf), &(shell_env.linesize), stdin);
+		my_argv[0] = strtok(shell_env.linebuf, DELIM);
 		my_argv[1] = NULL;
 		/* printf("linebuf = %s", linebuf); */
 		if (linelen > 0)
@@ -47,13 +43,13 @@ int main(void)
 			}
 		}
 		else
-			printf("\n");
-	}while (linelen > 0); /* linelen= 18446744073709551615 ??? */
+			printf("\n"); /* TODO: do this only if interactive */
+	}while (shell_env.linelen > 0); /* linelen= 18446744073709551615 ??? */
 	/* printf("linelen = %lu\n", linelen); */
-	free(linebuf);
-	linebuf = NULL;
-	if (linelen == -1)
+	free(shell_env.linebuf);
+	shell_env.linebuf = NULL;
+	if (shell_env.linelen == -1)
 		return (-1);
 	else
-		return (0);
+		return (count);
 }

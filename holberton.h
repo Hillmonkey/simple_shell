@@ -23,6 +23,28 @@
 
 extern char **environ;
 
+/**
+ * shenv_t - shell environment variables
+ * @linebuf: obtained by getline
+ * @av: argv passed into main (copy or original?)
+ * @path: a copy of path from environ or envp
+ * @path_tokens: array of pointers to tokens in path
+ * @full_path: concat of path, slash, and executable file
+ **/
+
+typedef struct shenv {
+	pid_t pid;
+	char *linebuf;
+	char **av;
+	char *path;
+	char **path_tokens;
+	char *full_path;
+	ssize_t linelen;
+	size_t linesize;
+	/* char *my_argv[2]; */
+	int status;
+	} shenv_t;
+
 /* helper_functions.c */
 int _strcmp(char *s1, char *s2);
 int str_eval(char *s1, char *s2);
@@ -37,6 +59,9 @@ int init_Cptr_buffer(char **buffer, int bufsize);
 
 /* error_switch.c */
 void errors(char error_msg);
+
+/* init_env.c */
+void init_env(shenv_t *shell_env);
 
 /* prompt.c */
 void prompt(int fd, struct stat buff);
