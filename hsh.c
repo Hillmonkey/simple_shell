@@ -2,40 +2,36 @@
 
 /**
  * main - simple shell, modelled after /bin/sh
+ * @ac: number of passed in args
+ * @av: array of args (strings) passed into main
  * Return: -1 on getline error, else # of commands executed by shell
  */
 
-int main(int ac, char**av)
+int main(int ac, char **av)
 {
-	pid_t pid;
-	int status;
-	int count = 0;
-	ssize_t linelen = 0;
-	size_t linesize = 0;
-	/* char *linebuf = NULL; */
 	char *my_argv[2];
-	struct stat buf; /* ?? put in shell_env ?? */
-	shenv_t shell_env;
+	shenv_t se;
 
-	init_env(&shell_env);
-
+	UNUSED(ac);
+	UNUSED(av);
+	init_env(&se);
 	do {
-		prompt(STDIN_FILENO, buf);
-		shell_env.linelen = getline(&(shell_env.linebuf), &(shell_env.linesize), stdin);
-		my_argv[0] = strtok(shell_env.linebuf, DELIM);
+		prompt(STDIN_FILENO, se.buf);
+		se.linelen = getline(&(se.linebuf), &(se.linesize), stdin);
+		my_argv[0] = strtok(se.linebuf, DELIM);
 		my_argv[1] = NULL;
 		/* printf("linebuf = %s", linebuf); */
-		if (shell_env.linelen > 0)
+		if (se.linelen > 0)
 		{
-			switch (pid = fork())
+			switch (se.pid = fork())
 			{
 				case -1:
 					perror("fork()");
 				case 0: /* child */
-					status = execve(my_argv[0], my_argv, NULL);
-					exit(status);
+					se.status = execve(my_argv[0], my_argv, NULL);
+					exit(se.status);
 				default: /* parent */
-					if (waitpid(pid, &status, 0) < 0)
+					if (waitpid(se.pid, &(se.status), 0) < 0)
 					{
 						perror("waitpid()");
 						exit(EXIT_FAILURE);
@@ -44,12 +40,12 @@ int main(int ac, char**av)
 		}
 		else
 			printf("\n"); /* TODO: do this only if interactive */
-	}while (shell_env.linelen > 0); /* linelen= 18446744073709551615 ??? */
+	} while (se.linelen > 0); /* linelen= 18446744073709551615 ??? */
 	/* printf("linelen = %lu\n", linelen); */
-	free(shell_env.linebuf);
-	shell_env.linebuf = NULL;
-	if (shell_env.linelen == -1)
+	free(se.linebuf);
+	se.linebuf = NULL;
+	if (se.linelen == -1)
 		return (-1);
 	else
-		return (count);
+		return (se.count);
 }
