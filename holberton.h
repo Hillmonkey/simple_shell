@@ -52,6 +52,9 @@ typedef struct shenv {
 	struct stat buf;
 	} shenv_t;
 
+/* exec_cmd.c */
+void exec_cmd(shenv_t *se);
+
 /* helper_functions.c */
 int _strcmp(char *s1, char *s2);
 int str_eval(char *s1, char *s2);
