@@ -21,11 +21,11 @@ int main(int ac, char**av)
 
 	do {
 		prompt(STDIN_FILENO, buf);
-		linelen = getline(&(shell_env.linebuf), &(shell_env.linesize), stdin);
+		shell_env.linelen = getline(&(shell_env.linebuf), &(shell_env.linesize), stdin);
 		my_argv[0] = strtok(shell_env.linebuf, DELIM);
 		my_argv[1] = NULL;
 		/* printf("linebuf = %s", linebuf); */
-		if (linelen > 0)
+		if (shell_env.linelen > 0)
 		{
 			switch (pid = fork())
 			{
