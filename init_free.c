@@ -1,5 +1,10 @@
 #include "holberton.h"
 
+/**
+ * init_env - Initialize environment struct
+ * @shell_env: pointer to struct that holds vars for passing to functions
+ **/
+
 void init_env(shenv_t *shell_env)
 {
 	/* shell_env->pid = DUD */
