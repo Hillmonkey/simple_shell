@@ -49,6 +49,7 @@ typedef struct shenv {
 	/* char *my_argv[2]; */
 	int status;
 	int count;
+	
 	struct stat buf;
 	} shenv_t;
 
@@ -76,5 +77,5 @@ void init_env(shenv_t *shell_env);
 /* prompt.c */
 void prompt(int fd, struct stat buff);
 void _puts(char *str);
-
+int is_interactive(int fd, struct stat buff);
 #endif /* HOLBER_H */

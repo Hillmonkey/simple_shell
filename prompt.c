@@ -9,7 +9,7 @@ void prompt(int fd, struct stat buff)
 {
 	fstat(fd, &buff);
 
-	if (S_ISCHR(buff.st_mode))
+	if (is_interactive(fd, buff))
 		_puts(PROMPT);
 }
 /**
@@ -25,4 +25,20 @@ void _puts(char *str)
 
 	write(STDERR_FILENO, str, len);
 
+}
+/**
+**prompt - interactive
+**@fd: stream
+**@buff: buffer
+**Return: int
+**/
+int is_interactive(int fd, struct stat buff)
+{
+	fstat(fd, &buff);
+
+	if (!(S_ISCHR(buff.st_mode)))
+		return (FALSE);
+
+	else
+		return (TRUE);
 }

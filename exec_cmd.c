@@ -1,5 +1,9 @@
 #include "holberton.h"
-
+/**
+** exec_cmd - executes commands
+** @se: arg
+** Return: void
+**/
 void exec_cmd(shenv_t *se)
 {
 	char *my_argv[2];
@@ -25,6 +29,7 @@ void exec_cmd(shenv_t *se)
 		}
 	}
 	else
-		printf("\n"); /* TODO: do this only if interactive */
+		if (is_interactive(STDIN_FILENO, se->buf))
+			printf("\n"); /* TODO: do this only if interactive */
 
 }
