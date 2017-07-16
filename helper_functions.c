@@ -70,3 +70,22 @@ int _strlen(char *s)
 	}
 	return (i);
 }
+
+/**
+ * print_argv - prints any var in NULL terminated argv format
+ * @argv: any char** in argv format, NULL terminated
+ **/
+void print_argv(char **argv)
+{
+	unsigned int i = 0;
+
+	_puts("==== print_argv ======\n");
+	if (!argv)
+		_puts("print_argv: NULL pointer error!!!");
+	for (i = 0; argv[i]; i++)
+	{
+		_puts(argv[i]);
+		_puts("\n");
+	}
+	_puts("=== end print_argv ====\n");
+}

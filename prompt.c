@@ -27,10 +27,13 @@ void _puts(char *str)
 
 }
 /**
-**prompt - interactive
-**@fd: stream
-**@buff: buffer
-**Return: int
+** is_interactive - returns a "boolean" indicating wheather stream
+**         (typically STDIN_FILENO) is interactive or not
+**         NOTE: no guarantees on results if fd is not an input stream in
+**         general or STDIN_FILENO in particular
+** @fd: file descriptor
+** @buff: buffer
+** Return: int
 **/
 int is_interactive(int fd, struct stat buff)
 {

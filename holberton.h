@@ -28,6 +28,7 @@ extern char **environ;
  * @pid: process id
  * @linebuf: obtained by getline
  * @av: argv passed into main (copy or original?)
+ * @cmd_tokens: this will contain array of strings, like *argv[]
  * @path: a copy of path from environ or envp
  * @path_tokens: array of pointers to tokens in path
  * @full_path: concat of path, slash, and executable file
@@ -43,6 +44,7 @@ typedef struct shenv
 	pid_t pid;
 	char *linebuf;
 	char **av;
+	char *cmd_tokens[BUFSIZE];
 	char *path;
 	char **path_tokens;
 	char *full_path;
@@ -63,17 +65,19 @@ int _strcmp(char *s1, char *s2);
 int str_eval(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
+void print_argv(char **argv);
 
 /* helper2.c */
 char *_strdup(char *str);
 char *str_concat(char *s1, char *s2);
 int init_char_buffer(char *buffer, int bufsize);
 int init_Cptr_buffer(char **buffer, int bufsize);
+void tokenize(shenv_t *se);
 
 /* error_switch.c */
 void errors(char error_msg);
 
-/* init_env.c */
+/* init_free.c */
 void init_env(shenv_t *shell_env);
 
 /* prompt.c */

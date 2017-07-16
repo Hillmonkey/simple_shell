@@ -85,3 +85,37 @@ int init_Cptr_buffer(char **buffer, int bufsize)
 		buffer[i] = default_value;
 	return (EXIT_SUCCESS);
 }
+
+
+/**
+ * tokenize - accepts string from getline, creates null-terminated toke array
+ * @se: shell env struct that contains many things, including:
+ *      se.linebuf (contains string from getline)
+ *      se.cmd_tokens (the array of tokens, which we are building here
+ *       this function "returns" a shellenv struct that contains a modified
+ *       cmd_tokens element formatted to null-terminated *argv[] format
+ **/
+void tokenize(shenv_t *se)
+{
+	char *token;
+	unsigned int i = 1;
+
+	se->cmd_tokens[0] = strtok(se->linebuf, DELIM);
+	while (i < BUFSIZE)
+	{
+		token = strtok(NULL, DELIM);
+		if (!token)
+			break;
+		/* printf("token#[%d] %p\n", i, token); */
+		se->cmd_tokens[i] = token;
+		/* printf("se->cmd_tokens[%d] %p\n", i, se->cmd_tokens[i]); */
+		i++;
+	}
+	if (i >= BUFSIZE)
+	{
+		se->cmd_tokens[BUFSIZE - 1] = NULL;
+		/* TODO: return an error: buffer overflow */
+	}
+	else
+		se->cmd_tokens[i] = NULL;
+}
