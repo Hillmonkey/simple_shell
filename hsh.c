@@ -27,5 +27,5 @@ int main(int ac, char **av)
 	if (se.linelen == -1)
 		return (-1);
 	else
-		return (se.count);
+		return (se.counter);
 }
