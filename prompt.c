@@ -12,12 +12,27 @@ void prompt(int fd, struct stat buff)
 	if (is_interactive(fd, buff))
 		_puts(PROMPT);
 }
+
 /**
- *_puts - function returns the length of a string.
- *@str: variable
- *Return: char
+ *_puts - put string to stdout
+ *@str: string to send to stdout
 **/
 void _puts(char *str)
+{
+	unsigned int len;
+
+	len = _strlen(str);
+
+	write(STDOUT_FILENO, str, len);
+
+}
+
+
+/**
+ *_puts_err - output string to stderr
+ *@str: string to send to stderr
+**/
+void _puts_err(char *str)
 {
 	unsigned int len;
 
@@ -26,6 +41,7 @@ void _puts(char *str)
 	write(STDERR_FILENO, str, len);
 
 }
+
 /**
 ** is_interactive - returns a "boolean" indicating wheather stream
 **         (typically STDIN_FILENO) is interactive or not
