@@ -87,6 +87,6 @@ int is_interactive(int fd, struct stat buff);
 
 /* helper3.c */
 /* int prompt(int fd, struct stat buf); */
-char **tokenize(char **str, char **tokens);
+/* char **tokenize(char **str, char **tokens); */
 
 #endif /* HOLBER_H */
