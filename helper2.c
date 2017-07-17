@@ -100,14 +100,13 @@ void tokenize(shenv_t *se)
 	char *token;
 	unsigned int i = 1;
 
-	se->cmd_tokens[0] = strtok(se->linebuf, DELIM);
-	while (i < BUFSIZE)
+	token = se->cmd_tokens[0] = strtok(se->linebuf, DELIM);
+	while (i < BUFSIZE && token && token[0])
 	{
-		token = strtok(NULL, DELIM);
+		token = se->cmd_tokens[i] = strtok(NULL, DELIM);
 		if (!token)
 			break;
 		/* printf("token#[%d] %p\n", i, token); */
-		se->cmd_tokens[i] = token;
 		/* printf("se->cmd_tokens[%d] %p\n", i, se->cmd_tokens[i]); */
 		i++;
 	}
