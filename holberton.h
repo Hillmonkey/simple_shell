@@ -60,7 +60,7 @@ typedef struct shenv
 /* exec_cmd.c */
 void exec_cmd(shenv_t *se);
 
-/* helper_functions.c */
+/* helper1.c */
 int _strcmp(char *s1, char *s2);
 int str_eval(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
@@ -84,4 +84,9 @@ void init_env(shenv_t *shell_env);
 void prompt(int fd, struct stat buff);
 void _puts(char *str);
 int is_interactive(int fd, struct stat buff);
+
+/* helper3.c */
+/* int prompt(int fd, struct stat buf); */
+char **tokenize(char **str, char **tokens);
+
 #endif /* HOLBER_H */

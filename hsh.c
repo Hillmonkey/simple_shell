@@ -9,6 +9,7 @@
 
 int main(int ac, char **av)
 {
+<<<<<<< HEAD
 	/* char *my_argv[2]; */
 	shenv_t se;
 

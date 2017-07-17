@@ -22,7 +22,7 @@ void errors(char error_msg)
 		break;
 
 	case 'C':
-		write(STDERR_FILENO, ERROR_MALLOC, _strlen(ERROR_MALLOC));
+		write(STDERR_FILENO, ERROR_MALLOC, _strlen(ERROR_FORK));
 		break;
 
 
