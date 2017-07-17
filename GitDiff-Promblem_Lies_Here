@@ -1,0 +1,248 @@
+diff --git a/error_switch.c b/error_switch.c
+index 2b5393a..3051d8b 100644
+--- a/error_switch.c
++++ b/error_switch.c
+@@ -5,28 +5,28 @@
+ ** Return: void
+ **/
+ 
+-void errors(char error_msg)
++void errors(int error_msg)
+ {
+ 
+    /* local variable definition */
+ 
+ 	switch (error_msg)
+ 	{
+-	case 'A':
++	case 1:
+ 		write(STDERR_FILENO, ERROR_FORK, _strlen(ERROR_FORK));
+ 		perror("Error");
+ 		break;
+ 
+-	case 'B':
++	case 2:
+ 		perror("Error");
+ 		break;
+ 
+-	case 'C':
+-		write(STDERR_FILENO, ERROR_MALLOC, _strlen(ERROR_FORK));
++	case 3:
++		write(STDERR_FILENO, ERROR_MALLOC, _strlen(ERROR_MALLOC));
+ 		break;
+ 
+ 
+-	case 'D':
++	case 4:
+ 		write(STDERR_FILENO, ERROR_PATH, _strlen(ERROR_PATH));
+ 		break;
+ 
+diff --git a/exec_cmd.c b/exec_cmd.c
+index f5b2330..325e5fc 100644
+--- a/exec_cmd.c
++++ b/exec_cmd.c
+@@ -6,20 +6,28 @@
+ **/
+ void exec_cmd(shenv_t *se)
+ {
++	char alpha_counter[30];
++
+ 	tokenize(se);
++	(se->counter)++;
+ 	if (se->linelen > 0)
+ 	{
+ 		switch (se->pid = fork())
+ 		{
+ 			case -1:
+-				perror("fork()");
++				errors(1);
+ 			case 0: /* child */
+ 				se->status = execve(se->cmd_tokens[0], se->cmd_tokens, NULL);
++				_puts(STDERR_FILENO, "hsh: ");
++				itoa(se->counter, alpha_counter);
++				_puts(STDERR_FILENO, alpha_counter);
++				perror("");
+ 				exit(se->status);
++				/* errors(1); */
+ 			default: /* parent */
+ 				if (waitpid(se->pid, &(se->status), 0) < 0)
+ 				{
+-					perror("waitpid()");
++					errors(1);
+ 					exit(EXIT_FAILURE);
+ 				}
+ 		}
+diff --git a/helper1.c b/helper1.c
+index 6285c50..654a87a 100644
+--- a/helper1.c
++++ b/helper1.c
+@@ -79,13 +79,13 @@ void print_argv(char **argv)
+ {
+ 	unsigned int i = 0;
+ 
+-	_puts("==== print_argv ======\n");
++	_puts(STDOUT_FILENO, "==== print_argv ======\n");
+ 	if (!argv)
+-		_puts("print_argv: NULL pointer error!!!");
++		_puts(STDERR_FILENO, "print_argv: NULL pointer error!!!");
+ 	for (i = 0; argv[i]; i++)
+ 	{
+-		_puts(argv[i]);
+-		_puts("\n");
++		_puts(STDOUT_FILENO, argv[i]);
++		_puts(STDOUT_FILENO, "\n");
+ 	}
+-	_puts("=== end print_argv ====\n");
++	_puts(STDOUT_FILENO, "=== end print_argv ====\n");
+ }
+diff --git a/helper2.c b/helper2.c
+index 17c6c2a..7f5f1b6 100644
+--- a/helper2.c
++++ b/helper2.c
+@@ -98,18 +98,18 @@ int init_Cptr_buffer(char **buffer, int bufsize)
+ void tokenize(shenv_t *se)
+ {
+ 	char *token;
+-	unsigned int i = 1;
++	unsigned int i = 0;
+ 
+-	se->cmd_tokens[0] = strtok(se->linebuf, DELIM);
+-	while (i < BUFSIZE)
++	se->cmd_tokens[i] = strtok(se->linebuf, DELIM);
++	while (i < BUFSIZE && se->cmd_tokens[i])
+ 	{
+ 		token = strtok(NULL, DELIM);
+ 		if (!token)
+ 			break;
++		i++;
+ 		/* printf("token#[%d] %p\n", i, token); */
+ 		se->cmd_tokens[i] = token;
+ 		/* printf("se->cmd_tokens[%d] %p\n", i, se->cmd_tokens[i]); */
+-		i++;
+ 	}
+ 	if (i >= BUFSIZE)
+ 	{
+diff --git a/helper3.c b/helper3.c
+index bce5674..c34f212 100644
+--- a/helper3.c
++++ b/helper3.c
+@@ -11,7 +11,7 @@
+ int prompt(struct stat sb)
+ {
+ 	if ((sb.st_mode & S_IFMT) != S_IFIFO)
+-		_puts(PROMPT);
++		_puts(STDOUT_FILENO, PROMPT);
+ 	return (EXIT_SUCCESS);
+ }
+ */
+@@ -28,7 +28,7 @@ int prompt(int fd, struct stat buf)
+ 	fstat(fd, &buf);
+ 
+ 	if (S_ISCHR(buf.st_mode))
+-		_puts(PROMPT);
++		_puts(STDOUT_FILENO, PROMPT);
+ 	return (EXIT_SUCCESS);
+ }
+ */
+diff --git a/holberton.h b/holberton.h
+index cdc5923..fb8bf3b 100644
+--- a/holberton.h
++++ b/holberton.h
+@@ -35,7 +35,7 @@ extern char **environ;
+  * @linelen: line length return val of getline
+  * @linesize: receives allocated size from getline
+  * @status: status to exit with
+- * @count: number of lines executed by shell (returned on exit??)
++ * @counter: number of cmds executed by shell (returned on exit??)
+  * @buf: exists to pass to pass to fstat
+  **/
+ 
+@@ -52,7 +52,7 @@ typedef struct shenv
+ 	size_t linesize;
+ 	/* char *my_argv[2]; */
+ 	int status;
+-	int count;
++	int counter;
+ 
+ 	struct stat buf;
+ 	} shenv_t;
+@@ -75,14 +75,18 @@ int init_Cptr_buffer(char **buffer, int bufsize);
+ void tokenize(shenv_t *se);
+ 
+ /* error_switch.c */
+-void errors(char error_msg);
++void errors(int error_msg);
+ 
+ /* init_free.c */
+ void init_env(shenv_t *shell_env);
+ 
++/* math_helper.c */
++int itoa(int n, char s[]);
++int _abs(int n);
++
+ /* prompt.c */
+ void prompt(int fd, struct stat buff);
+-void _puts(char *str);
++void _puts(int fd, char *str);
+ int is_interactive(int fd, struct stat buff);
+ 
+ /* helper3.c */
+diff --git a/hsh.c b/hsh.c
+index 924f99a..9e2c98f 100644
+--- a/hsh.c
++++ b/hsh.c
+@@ -18,7 +18,6 @@ int main(int ac, char **av)
+ 	do {
+ 		prompt(STDIN_FILENO, se.buf);
+ 		se.linelen = getline(&(se.linebuf), &(se.linesize), stdin);
+-		/* tokenize(&se); */
+ 		exec_cmd(&se);
+ 	} while (se.linelen > 0); /* linelen= 18446744073709551615 ??? */
+ 	/* printf("linelen = %lu\n", linelen); */
+@@ -27,5 +26,5 @@ int main(int ac, char **av)
+ 	if (se.linelen == -1)
+ 		return (-1);
+ 	else
+-		return (se.count);
++		return (se.counter);
+ }
+diff --git a/init_free.c b/init_free.c
+index 8cde0f7..7aefde9 100644
+--- a/init_free.c
++++ b/init_free.c
+@@ -12,5 +12,6 @@ void init_env(shenv_t *se)
+ 	se->linebuf = NULL;
+ 	se->linelen = 0;
+ 	se->linesize = 0;
++	se->counter = 0;
+ 	/* get rid of se->my_argv[] later */
+ }
+diff --git a/prompt.c b/prompt.c
+index 1d7700d..720aec8 100644
+--- a/prompt.c
++++ b/prompt.c
+@@ -10,20 +10,21 @@ void prompt(int fd, struct stat buff)
+ 	fstat(fd, &buff);
+ 
+ 	if (is_interactive(fd, buff))
+-		_puts(PROMPT);
++		_puts(fd, PROMPT);
+ }
+ /**
+  *_puts - function returns the length of a string.
++ * @fd: file descriptor (STDERR_FILENO or STDOUT_FILENO typically)
+  *@str: variable
+  *Return: char
+ **/
+-void _puts(char *str)
++void _puts(int fd, char *str)
+ {
+ 	unsigned int len;
+ 
+ 	len = _strlen(str);
+ 
+-	write(STDERR_FILENO, str, len);
++	write(fd, str, len);
+ 
+ }
+ /**
