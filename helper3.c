@@ -38,6 +38,8 @@ int prompt(int fd, struct stat buf)
  *
  *
  **/
+
+/**
 char **tokenize(char **str, char **tokens)
 {
 	int i;
@@ -50,3 +52,4 @@ char **tokenize(char **str, char **tokens)
 	}
 	return (tokens);
 }
+**/
