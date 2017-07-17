@@ -61,14 +61,14 @@ typedef struct built_s
 {
 	char *name;
 	
-	int (p)();
+	int (*p)(shenv_t *);
 
 }built_t;
 
 /*builtins*/
-int execute_builtin(char **args);
-int built_exit(char **args);
-int built_env(char **args);
+int execute_builtin(shenv_t *se);
+int built_exit(shenv_t *se);
+int built_env(shenv_t *se);
 int number_builtins(built_t built_in[]);
 
 

@@ -7,31 +7,30 @@
 **/
 
 
-int execute_builtin(char **args)
+int execute_builtin(shenv_t *se)
 {
 
-	int built_exit(char **args)
-	int built_env(char **args)
 	
 	built_t built_in[] = {
 	{"exit", built_exit},
 	{"env", built_env},
-	{NULL, NULL}
-	};built_t
+	{NULL, NULL},
+	};
 
 
 
-
+	int status;
 	int i;
 
-	if (args[0] == NULL)
+	if (se->cmd_tokens[0] == NULL)
 		return (1);
 
-	for (i = 0; i < number_builtins( ); i++)
+	for (i = 0; i < number_builtins(built_in); i++)
 	{
-		if(_strdup(args[0], built_in[i]) == 0)
+		if(_strcmp(se->cmd_tokens[0], built_in[i].name) == 0)
 		{
-			return (built_in[i].p)();
+			status = built_in[i].p(se);
+			return (status);
 		}
 	}
 	return (1);
