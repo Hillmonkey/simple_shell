@@ -98,18 +98,18 @@ int init_Cptr_buffer(char **buffer, int bufsize)
 void tokenize(shenv_t *se)
 {
 	char *token;
-	unsigned int i = 1;
+	unsigned int i = 0;
 
-	se->cmd_tokens[0] = strtok(se->linebuf, DELIM);
-	while (i < BUFSIZE)
+	se->cmd_tokens[i] = strtok(se->linebuf, DELIM);
+	while (i < BUFSIZE && se->cmd_tokens[i])
 	{
 		token = strtok(NULL, DELIM);
 		if (!token)
 			break;
+		i++;
 		/* printf("token#[%d] %p\n", i, token); */
 		se->cmd_tokens[i] = token;
 		/* printf("se->cmd_tokens[%d] %p\n", i, se->cmd_tokens[i]); */
-		i++;
 	}
 	if (i >= BUFSIZE)
 	{

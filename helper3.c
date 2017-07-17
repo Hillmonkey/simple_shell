@@ -11,7 +11,7 @@
 int prompt(struct stat sb)
 {
 	if ((sb.st_mode & S_IFMT) != S_IFIFO)
-		_puts(PROMPT);
+		_puts(STDOUT_FILENO, PROMPT);
 	return (EXIT_SUCCESS);
 }
 */
@@ -28,7 +28,7 @@ int prompt(int fd, struct stat buf)
 	fstat(fd, &buf);
 
 	if (S_ISCHR(buf.st_mode))
-		_puts(PROMPT);
+		_puts(STDOUT_FILENO, PROMPT);
 	return (EXIT_SUCCESS);
 }
 */

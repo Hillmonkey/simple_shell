@@ -18,7 +18,6 @@ int main(int ac, char **av)
 	do {
 		prompt(STDIN_FILENO, se.buf);
 		se.linelen = getline(&(se.linebuf), &(se.linesize), stdin);
-		/* tokenize(&se); */
 		exec_cmd(&se);
 	} while (se.linelen > 0); /* linelen= 18446744073709551615 ??? */
 	/* printf("linelen = %lu\n", linelen); */
@@ -27,5 +26,5 @@ int main(int ac, char **av)
 	if (se.linelen == -1)
 		return (-1);
 	else
-		return (se.count);
+		return (se.counter);
 }

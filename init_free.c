@@ -12,5 +12,6 @@ void init_env(shenv_t *se)
 	se->linebuf = NULL;
 	se->linelen = 0;
 	se->linesize = 0;
+	se->counter = 0;
 	/* get rid of se->my_argv[] later */
 }

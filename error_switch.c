@@ -5,28 +5,28 @@
 ** Return: void
 **/
 
-void errors(char error_msg)
+void errors(int error_msg)
 {
 
    /* local variable definition */
 
 	switch (error_msg)
 	{
-	case 'A':
+	case 1:
 		write(STDERR_FILENO, ERROR_FORK, _strlen(ERROR_FORK));
 		perror("Error");
 		break;
 
-	case 'B':
+	case 2:
 		perror("Error");
 		break;
 
-	case 'C':
-		write(STDERR_FILENO, ERROR_MALLOC, _strlen(ERROR_FORK));
+	case 3:
+		write(STDERR_FILENO, ERROR_MALLOC, _strlen(ERROR_MALLOC));
 		break;
 
 
-	case 'D':
+	case 4:
 		write(STDERR_FILENO, ERROR_PATH, _strlen(ERROR_PATH));
 		break;
 

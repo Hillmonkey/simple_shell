@@ -79,13 +79,13 @@ void print_argv(char **argv)
 {
 	unsigned int i = 0;
 
-	_puts("==== print_argv ======\n");
+	_puts(STDOUT_FILENO, "==== print_argv ======\n");
 	if (!argv)
-		_puts("print_argv: NULL pointer error!!!");
+		_puts(STDERR_FILENO, "print_argv: NULL pointer error!!!");
 	for (i = 0; argv[i]; i++)
 	{
-		_puts(argv[i]);
-		_puts("\n");
+		_puts(STDOUT_FILENO, argv[i]);
+		_puts(STDOUT_FILENO, "\n");
 	}
-	_puts("=== end print_argv ====\n");
+	_puts(STDOUT_FILENO, "=== end print_argv ====\n");
 }

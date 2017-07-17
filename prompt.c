@@ -10,20 +10,21 @@ void prompt(int fd, struct stat buff)
 	fstat(fd, &buff);
 
 	if (is_interactive(fd, buff))
-		_puts(PROMPT);
+		_puts(fd, PROMPT);
 }
 /**
  *_puts - function returns the length of a string.
+ * @fd: file descriptor (STDERR_FILENO or STDOUT_FILENO typically)
  *@str: variable
  *Return: char
 **/
-void _puts(char *str)
+void _puts(int fd, char *str)
 {
 	unsigned int len;
 
 	len = _strlen(str);
 
-	write(STDERR_FILENO, str, len);
+	write(fd, str, len);
 
 }
 /**
