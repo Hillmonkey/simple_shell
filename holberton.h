@@ -57,6 +57,22 @@ typedef struct shenv
 	struct stat buf;
 	} shenv_t;
 
+typedef struct built_s
+{
+	char *name;
+	
+	int (p)();
+
+}built_t;
+
+/*builtins*/
+int execute_builtin(char **args);
+int built_exit(char **args);
+int built_env(char **args);
+int number_builtins(built_t built_in[]);
+
+
+
 /* exec_cmd.c */
 void exec_cmd(shenv_t *se);
 
