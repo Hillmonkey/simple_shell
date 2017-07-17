@@ -35,7 +35,7 @@ extern char **environ;
  * @linelen: line length return val of getline
  * @linesize: receives allocated size from getline
  * @status: status to exit with
- * @count: number of lines executed by shell (returned on exit??)
+ * @counter: number of lines executed by shell (returned on exit??)
  * @buf: exists to pass to pass to fstat
  **/
 
@@ -52,7 +52,7 @@ typedef struct shenv
 	size_t linesize;
 	/* char *my_argv[2]; */
 	int status;
-	int count;
+	int counter;
 
 	struct stat buf;
 	} shenv_t;
@@ -80,9 +80,14 @@ void errors(char error_msg);
 /* init_free.c */
 void init_env(shenv_t *shell_env);
 
+/* math_helper.c */
+int itoa(int n, char s[]);
+int _abs(int n);
+
 /* prompt.c */
 void prompt(int fd, struct stat buff);
 void _puts(char *str);
+void _puts_err(char *str);
 int is_interactive(int fd, struct stat buff);
 
 /* helper3.c */
