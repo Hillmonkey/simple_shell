@@ -66,8 +66,20 @@ The user can also utilize the command `ctrl D` which will just exit. When the co
 ## Files
 * `README.md` : Current file, contains information about this project
 * `Authors`: File with list of contributing authors
-* `man_turtleshell`: File for executing man page on the turtle shell
+* `man_1_simple_shell`: File for executing man page on the turtle shell
 * `holberton.h` : Header file, contains all prototypes for funcitons used, as well as libriaries
+* `_getline.c`:
+* `built_ins.c`:
+* `error_switch.c`:
+* `exec_cmd.c`:
+* `execute_built.c`:
+* `helper1.c`:
+* `helper2.c`:
+* `hsh.c`:
+* `init_free.c`:
+* `math_helper.c`:
+* `prompt.c`:
+
 
 
 ### Comments
