@@ -22,7 +22,7 @@ int execute_builtin(shenv_t *se)
 	int status;
 	int i;
 
-	if (se->cmd_tokens[0] == NULL)
+	if (se->cmd_tokens == NULL || se->cmd_tokens[0] == NULL)
 		return (1);
 
 	for (i = 0; i < number_builtins(built_in); i++)
@@ -43,7 +43,7 @@ int execute_builtin(shenv_t *se)
 int number_builtins(built_t built_in[])
 {
 
-	int i; 
+	int i = 0; 
 	
 	while (built_in[i].name != NULL)
 		i++;
