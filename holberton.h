@@ -12,6 +12,7 @@
 #define UNUSED(x) (void)(x)
 #define PROMPT "$ "
 #define BUFSIZE 1024
+#define STR_BUF 1024
 #define TRUE 1
 #define FALSE 0
 #define DELIM "\t\r\n "
@@ -47,7 +48,7 @@ typedef struct shenv
 	char *cmd_tokens[BUFSIZE];
 	char *path;
 	char **path_tokens;
-	char *full_path;
+	char full_path[STR_BUF];
 	ssize_t linelen;
 	size_t linesize;
 	/* char *my_argv[2]; */
@@ -70,7 +71,8 @@ int built_exit(shenv_t *se);
 int built_env(shenv_t *se);
 int number_builtins(built_t built_in[]);
 
-
+/* hsh.c -- main */
+int absolute_ath(shenv_t *se);
 
 /* exec_cmd.c */
 void exec_cmd(shenv_t *se);
@@ -99,6 +101,11 @@ void init_env(shenv_t *shell_env);
 /* math_helper.c */
 int itoa(int n, char s[]);
 int _abs(int n);
+
+/* path_helper.c */
+char *get_EV(char *var);
+void build_path_array(shenv_t *se);
+int get_path(shenv_t *se);
 
 /* prompt.c */
 void prompt(int fd, struct stat buff);
