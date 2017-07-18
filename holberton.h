@@ -74,6 +74,7 @@ int number_builtins(built_t built_in[]);
 
 /* exec_cmd.c */
 void exec_cmd(shenv_t *se);
+void err_msg(shenv_t *se);
 
 /* helper1.c */
 int _strcmp(char *s1, char *s2);
