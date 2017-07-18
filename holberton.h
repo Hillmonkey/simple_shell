@@ -60,7 +60,6 @@ typedef struct shenv
 typedef struct built_s
 {
 	char *name;
-	
 	int (*p)(shenv_t *);
 
 }built_t;
