@@ -1,24 +1,18 @@
 #include "holberton.h"
 
 /**
-**execute_builtin - 
-**@args:
-**Return: int
+**execute_builtin -  executes builtins listed in struct
+** @se: shell env struct
+**Return: success if builtin runs otherwise, failure code
 **/
-
 
 int execute_builtin(shenv_t *se)
 {
-
-	
 	built_t built_in[] = {
 	{"exit", built_exit},
 	{"env", built_env},
 	{NULL, NULL},
 	};
-
-
-
 	int status;
 	int i;
 
@@ -33,7 +27,7 @@ int execute_builtin(shenv_t *se)
 			return (status);
 		}
 	}
-	return (1);
+	return (EXIT_FAILURE);
 }
 /**
 **number_builtin - 
