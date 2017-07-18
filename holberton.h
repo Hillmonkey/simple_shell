@@ -67,7 +67,7 @@ typedef struct built_s
 /*builtins*/
 int execute_builtin(shenv_t *se);
 int built_exit(shenv_t *se);
-int built_env(shenv_t *se);
+int built_p_env(shenv_t *se);
 int number_builtins(built_t built_in[]);
 
 

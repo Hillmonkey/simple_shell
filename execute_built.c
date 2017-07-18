@@ -10,7 +10,7 @@ int execute_builtin(shenv_t *se)
 {
 	built_t built_in[] = {
 	{"exit", built_exit},
-	{"env", built_env},
+	{"env", built_p_env},
 	{NULL, NULL},
 	};
 	int status;
