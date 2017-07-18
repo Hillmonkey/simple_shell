@@ -8,7 +8,6 @@ void exec_cmd(shenv_t *se)
 {
 	char alpha_counter[30];
 
-	tokenize(se);
 	(se->counter)++;
 	if (se->linelen > 0)
 	{
