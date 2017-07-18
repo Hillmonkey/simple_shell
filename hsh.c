@@ -11,6 +11,7 @@ int main(int ac, char **av)
 {
 	/* char *my_argv[2]; */
 	shenv_t se;
+	int status;
 
 	UNUSED(ac);
 	UNUSED(av);
@@ -18,8 +19,10 @@ int main(int ac, char **av)
 	do {
 		prompt(STDIN_FILENO, se.buf);
 		se.linelen = getline(&(se.linebuf), &(se.linesize), stdin);
-		/* tokenize(&se); */
-		exec_cmd(&se);
+		tokenize(&se);
+		status = execute_builtin(&se);
+		if (status != 0)
+			exec_cmd(&se);
 	} while (se.linelen > 0); /* linelen= 18446744073709551615 ??? */
 	/* printf("linelen = %lu\n", linelen); */
 	free(se.linebuf);
