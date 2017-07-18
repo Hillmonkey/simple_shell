@@ -23,7 +23,6 @@ int built_p_env(shenv_t *se)
 
 	int i = 0;
 	
-	_puts("built_p_env\n");
 
 	if (environ == NULL)
 	{
