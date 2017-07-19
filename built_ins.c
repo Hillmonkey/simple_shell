@@ -19,23 +19,21 @@ int built_exit(shenv_t *se)
 **/
 int built_p_env(shenv_t *se)
 {
-	UNUSED(se);
-
 	int i = 0;
-	
 
+	UNUSED(se);
 	if (environ == NULL)
 	{
 		perror("hsh environment list is NULL");
 		return (EXIT_FAILURE);
 
 	}
-	
+
 	for (; environ[i] != NULL; i++)
 	{
 		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
 		write(STDOUT_FILENO, "\n", 1);
-	}	
+	}
 	return (EXIT_SUCCESS);
 }
 

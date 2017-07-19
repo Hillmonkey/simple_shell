@@ -44,6 +44,7 @@ int main(int ac, char **av)
 		not_builtin = execute_builtin(&se);
 		if (not_builtin)
 		{
+			/* printf("not_builtin\n"); */
 			is_abs_path = absolute_path(&se);
 			if (is_abs_path)
 			{
@@ -53,9 +54,9 @@ int main(int ac, char **av)
 			else
 			{
 				/* printf("not absolute path\n"); */
-				if (get_path(&se) == EXIT_SUCCESS)
+				get_path(&se); /* not using return status of get_path() */
 				{
-					/* printf("woo hoo!!! I wanna execute this: "); */
+					/* printf("woo hoo!!! I wanna execute this:\n"); */
 					exec_abs_cmd(&se, se.full_path);
 				}
 			}

@@ -16,7 +16,8 @@ void exec_cmd(shenv_t *se)
 				perror("fork()");
 			case 0: /* child */
 				se->status = execve(se->cmd_tokens[0], se->cmd_tokens, NULL);
-				if (_strlen(se->cmd_tokens[0]) > 0)
+				/* if (_strlen(se->cmd_tokens[0]) > 0) */
+				if (TRUE)
 				{
 					err_msg(se);
 					perror("");
@@ -37,6 +38,7 @@ void exec_cmd(shenv_t *se)
 /**
 ** exec_abs_cmd - executes command with built token[0]
 ** @se: Shell Environmnet struct
+** @arg0: string representing full_path of file to execute
 ** Return: void
 **/
 void exec_abs_cmd(shenv_t *se, char *arg0)
@@ -50,6 +52,7 @@ void exec_abs_cmd(shenv_t *se, char *arg0)
 				perror("fork()");
 			case 0: /* child */
 				se->status = execve(arg0, se->cmd_tokens, NULL);
+				/* printf("EAC-case0-arg0 = %s\n", arg0); */
 				if (_strlen(arg0) > 0)
 				{
 					err_msg(se);
