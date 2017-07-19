@@ -96,7 +96,9 @@ using more than alloted 1024 will cause segmentation fault or unpredictable beha
 The following variables take a buffersize of 1024:
 .PP
 .B PATH_TOKENS
+.PP
 .B CMD_TOKENS
+.PP
 .B FULL_PATH
 .PP
 .SH AUTHORS
