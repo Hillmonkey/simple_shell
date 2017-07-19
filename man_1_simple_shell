@@ -47,7 +47,7 @@ by the output name it was given.
 .PP
 .B EX: $ ./some_name or $ a./a.out.\
 .PP
-.SH The turtle shell will compile with the following:
+The turtle shell will compile with the following:
 gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
 .PP
 .SH PIPELINES
@@ -64,7 +64,7 @@ funciton and execute said commands. An example of non-interactive mode input:
 .PP
 .PP
 .RE 
-.SH Another example of non interactive mode:
+Another example of non interactive mode:
 .PP
 .B $ cat some_file | ./hsh
 .PP
