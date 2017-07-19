@@ -1,4 +1,4 @@
-.TH Turtle 1 "20 April 2017" "version 1.0" "Programmer's Manual"
+.TH Turtle 1 "20 July 2017" "version 1.0" "Programmer's Manual"
 
 
 
@@ -9,7 +9,11 @@
 
 .SH SYNOPSIS
 .PP
-.B ./hsh
+.B hsh [options] [file]
+
+.SH COPYRIGHT
+.PP
+.B hsh is Copyright (C) 2017-2017 by the Holberton Student Foundation, Inc.
 
 
 
@@ -31,12 +35,17 @@ $PATH:
 
 .PP
 Turtle shell has two builtinin commands it also integrates with other commands \
-that can be located in the PATH. The output of ghost shell is to replicate \
-exactly as the shell 'sh' or 'bash'.
+that can be located in the PATH. The output of turtle shell is to replicate \
+exactly as the shell 'sh'.
 .PP
-.B $ man bash
+.B $ man sh
 . Turtle Shell\
 The turtle shell takes commands from files, shell scripts and user input in both interactive or non-interactive mode.
+
+.SH OPTIONS
+.PP
+.B Turtle shell does not take any options from command line
+
 
 .SH INITIALIZATION
 To use the turtle shell the user needs to compile \
@@ -50,6 +59,12 @@ gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
 
 
 .PP
+.SH PIPELINES
+pipeline  is a sequence of one or more commands separated by the character |.  The format\
+for a pipeline is:\
+[echo command  | command2 ...etc. ./hsh
+       
+       
 If the user inputs piplines or calls  non-interactive mode the ghost shell should\
 funciton and execute said commands. An example of non-interactive mode input:
 .PP
@@ -68,8 +83,6 @@ The turtle shell does not take any options but does utilize \
 extern char **environ. 
 
  
-
-
 
 .B
 .PP
