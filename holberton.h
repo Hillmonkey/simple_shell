@@ -12,6 +12,7 @@
 #define UNUSED(x) (void)(x)
 #define PROMPT "$ "
 #define BUFSIZE 1024
+#define STR_BUF 1024
 #define TRUE 1
 #define FALSE 0
 #define DELIM "\t\r\n "
@@ -46,8 +47,8 @@ typedef struct shenv
 	char **av;
 	char *cmd_tokens[BUFSIZE];
 	char *path;
-	char **path_tokens;
-	char *full_path;
+	char *path_tokens[BUFSIZE];
+	char full_path[STR_BUF];
 	ssize_t linelen;
 	size_t linesize;
 	/* char *my_argv[2]; */
@@ -70,10 +71,13 @@ int built_exit(shenv_t *se);
 int built_p_env(shenv_t *se);
 int number_builtins(built_t built_in[]);
 
-
+/* hsh.c -- main */
+int absolute_ath(shenv_t *se);
 
 /* exec_cmd.c */
 void exec_cmd(shenv_t *se);
+void exec_abs_cmd(shenv_t *se, char *arv0);
+void err_msg(shenv_t *se);
 
 /* helper1.c */
 int _strcmp(char *s1, char *s2);
@@ -87,6 +91,7 @@ char *_strdup(char *str);
 char *str_concat(char *s1, char *s2);
 int init_char_buffer(char *buffer, int bufsize);
 int init_Cptr_buffer(char **buffer, int bufsize);
+/* FYI tokenize  = tokenize getline string */
 void tokenize(shenv_t *se);
 
 /* error_switch.c */
@@ -94,10 +99,17 @@ void errors(char error_msg);
 
 /* init_free.c */
 void init_env(shenv_t *shell_env);
+int init_cmd_tokens(shenv_t *se);
+int init_path_tokens(shenv_t *se);
 
 /* math_helper.c */
 int itoa(int n, char s[]);
 int _abs(int n);
+
+/* path_helper.c */
+char *get_EV(char *var);
+void build_path_array(shenv_t *se);
+int get_path(shenv_t *se);
 
 /* prompt.c */
 void prompt(int fd, struct stat buff);

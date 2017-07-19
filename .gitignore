@@ -2,4 +2,6 @@
 test*
 error*
 *.swp
+*.swo
+*.TEMP
 a.out
