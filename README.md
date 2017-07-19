@@ -41,7 +41,7 @@ The following variables take a buffersize of 1024:
 * `CMD_TOKENS`
 * `FULL_PATH`
 
-Disclosure this program takes no more that 1024, using more than alloted 1024 will cause segmentmentation fault or unpreditctable behavior.
+Disclosure this program takes no more than 1024, using more than alloted 1024 will cause segmentmentation fault or unpredictable behavior.
 
 ### Compilation
 All files will be compiled with the following: `$ gcc -Wall -Werror -Wextra -pedantic *.c`
