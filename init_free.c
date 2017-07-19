@@ -15,3 +15,42 @@ void init_env(shenv_t *se)
 	se->counter = 0;
 	/* get rid of se->my_argv[] later */
 }
+
+
+/**
+ * init_cmd_tokens - wipe all contents of buffer to default value
+ * @se: Shell Environment struct
+ * Return: EXIT_SUCCESS
+ **/
+int init_cmd_tokens(shenv_t *se)
+{
+	int i;
+	char *default_value = NULL;
+
+	for (i = 0; i < BUFSIZE; i++)
+	{
+		/* printf("cmd_token[%d] = %p\n", i, se->cmd_tokens[i]); */
+		se->cmd_tokens[i] = default_value;
+	}
+	return (EXIT_SUCCESS);
+}
+
+/**
+ * init_path_tokens - wipe all contents of buffer to default value
+ * @se: Shell Environment struct
+ * Return: EXIT_SUCCESS
+ **/
+int init_path_tokens(shenv_t *se)
+{
+	int i;
+	char *default_value = NULL;
+
+	for (i = 0; i < BUFSIZE; i++)
+	{
+		/* printf("path_token[%d] = %p\n", i, se->path_tokens[i]); */
+		se->path_tokens[i] = default_value;
+		/* buffer[i] = NULL; */
+	}
+	return (EXIT_SUCCESS);
+}
+

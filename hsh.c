@@ -9,11 +9,13 @@
 
 int absolute_path(shenv_t *se)
 {
-	if (se->path_tokens && se->path_tokens[0])
-		if (se->path_tokens[0][0] == '/')
+	if (se->cmd_tokens && se->cmd_tokens[0])
+	{
+		if (se->cmd_tokens[0][0] == '/')
 			return (TRUE);
 		else
 			return (FALSE);
+	}
 	else
 		return (-1);
 }
@@ -29,7 +31,8 @@ int main(int ac, char **av)
 {
 	/* char *my_argv[2]; */
 	shenv_t se;
-	int not_builtin;
+	int not_builtin, is_abs_path;
+
 
 	UNUSED(ac);
 	UNUSED(av);
@@ -41,16 +44,23 @@ int main(int ac, char **av)
 		not_builtin = execute_builtin(&se);
 		if (not_builtin)
 		{
-			if (absolute_path(&se))
+			is_abs_path = absolute_path(&se);
+			if (is_abs_path)
+			{
+				/* printf("is_abs_path = %d\n", is_abs_path); */
 				exec_cmd(&se);
-			else
-			{ /* build path array */
-				if (get_path(&se) == EXIT_SUCCESS)
-					printf("woo hoo!!! I wanna execute this: ");
-					printf("%s\n", se.full_path);
 			}
-		}	
-	} while (se.linelen > 0); /* linelen= 18446744073709551615 ??? */
+			else
+			{
+				/* printf("not absolute path\n"); */
+				if (get_path(&se) == EXIT_SUCCESS)
+				{
+					/* printf("woo hoo!!! I wanna execute this: "); */
+					exec_abs_cmd(&se, se.full_path);
+				}
+			}
+		}
+	} while (se.linelen > 0);
 	/* printf("linelen = %lu\n", linelen); */
 	free(se.linebuf);
 	se.linebuf = NULL;

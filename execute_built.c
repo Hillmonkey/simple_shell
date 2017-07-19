@@ -21,7 +21,7 @@ int execute_builtin(shenv_t *se)
 
 	for (i = 0; i < number_builtins(built_in); i++)
 	{
-		if(_strcmp(se->cmd_tokens[0], built_in[i].name) == 0)
+		if (_strcmp(se->cmd_tokens[0], built_in[i].name) == 0)
 		{
 			status = built_in[i].p(se);
 			return (status);
@@ -30,15 +30,15 @@ int execute_builtin(shenv_t *se)
 	return (EXIT_FAILURE);
 }
 /**
-**number_builtin - 
-**@built_t:
-**Return: int
+** number_builtins -  return number of built-in commands
+** @built_in: array associating strings with pointers to functions
+** Return: number of built-ins
 **/
 int number_builtins(built_t built_in[])
 {
 
-	int i = 0; 
-	
+	int i = 0;
+
 	while (built_in[i].name != NULL)
 		i++;
 	return (i);

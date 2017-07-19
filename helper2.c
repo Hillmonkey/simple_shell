@@ -79,16 +79,19 @@ int init_char_buffer(char *buffer, int bufsize)
 int init_Cptr_buffer(char **buffer, int bufsize)
 {
 	int i;
-	char *default_value = NULL;
+	/* char *default_value = NULL; */
 
 	for (i = 0; i < bufsize; i++)
-		buffer[i] = default_value;
+	{
+		printf("Cptr[%d] = %p\n", i, buffer[i]);
+		/* buffer[i] = default_value; */
+		buffer[i] = NULL;
+	}
 	return (EXIT_SUCCESS);
 }
-
-
 /**
  * tokenize - accepts string from getline, creates null-terminated toke array
+ *            token array stored here: se->cmd_tokens[]
  * @se: shell env struct that contains many things, including:
  *      se.linebuf (contains string from getline)
  *      se.cmd_tokens (the array of tokens, which we are building here

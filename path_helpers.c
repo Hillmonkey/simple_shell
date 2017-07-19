@@ -3,10 +3,8 @@
 /**
  * get_EV - get specified Environ Variable from environ
  * @var: variable name to search for in Environment Variables
- * @envp: full environment - array of strings
  * Return: pointer into Environ, or NULL if no match
  **/
-/* char *get_EV(char *var, char **envp) */
 char *get_EV(char *var)
 {
 	int i = 0;
@@ -15,7 +13,7 @@ char *get_EV(char *var)
 	{
 		if (str_eval(environ[i], var) >= _strlen(var))
 		{
-			printf("getEV-> %s\n", environ[i]);
+			/* printf("getEV-> %s\n", environ[i]); */
 			return (_strdup(environ[i]));
 		}
 		i++;
@@ -24,7 +22,7 @@ char *get_EV(char *var)
 }
 
 /**
- * build_path_array - build array paths in $PATH environment variable
+ * build_path_array - build array of paths in se->path_tokens using $PATH
  * @se: pointer to shell environment variable
  **/
 void build_path_array(shenv_t *se)
@@ -32,11 +30,14 @@ void build_path_array(shenv_t *se)
 	int i;
 	char *path, *tmp;
 
-	init_Cptr_buffer(se->path_tokens, BUFSIZE);
+	init_path_tokens(se);
 	path = get_EV("PATH");
 	tmp = strtok(path, "=");
 	for (i = 0; tmp; i++)
+	{
 		se->path_tokens[i] = tmp = strtok(NULL, ":");
+		/* printf("se->path_tokens[%d] = %s\n", i, tmp); */
+	}
 }
 
 /**
@@ -61,8 +62,12 @@ int get_path(shenv_t *se)
 		{
 			path_slash = str_concat(se->path_tokens[i], "/");
 			tmp = str_concat(path_slash, se->cmd_tokens[0]);
+			/* printf("tmp-concat[%d]len[%d] = %s\n", i, _strlen(tmp), tmp); */
 			if (_strlen(tmp) < STR_BUF)
+			{
 				_strcpy(se->full_path, tmp);
+				/* printf("full_path = %s\n", se->full_path); */
+			}
 			else
 			{ /* TODO: integrate with error code functions */
 				perror("STR_BUF overflow .. averted");
@@ -71,17 +76,14 @@ int get_path(shenv_t *se)
 			free(path_slash);
 			free(tmp);
 			if (stat(se->full_path, &st) == 0)
-			{
-				printf("get_path-> %s\n", se->full_path);
 				return (EXIT_SUCCESS);
-			}
-			free(se->full_path);
+			/* free(se->full_path); */
 			i++;
 		}
 		/* free(full_path); */
 	}
 	else
-		_puts_err("get_path --> What the Fuck???");
+		_puts_err("get_path --> unexpected error");
 	/* free(path); */
 	return (EXIT_FAILURE);
 }
