@@ -35,6 +35,14 @@ For more information on ls, you can use the `man` command which will show a manu
 
 The shell also contains two builtins which are commands that are within the shell itself. The two builtins are `exit` and `env`. You can also use `help` command to know which builtins are provided by the shell. The `help` command works similarly to the manual where it provides further detail or information on given builtin.
 
+### Unpredictable Results
+The following variable take a buffersize of 1024:
+`PATH_TOKENS`
+`CMD_TOKENS`
+`FULL_PATH`
+
+Disclosure this program takes no more that 1024, using more than alloted 1024 will cause segmentmentation fault or unpreditctable behavior.
+
 ### Compilation
 All files will be compiled with the following: `$ gcc -Wall -Werror -Wextra -pedantic *.c`
 
