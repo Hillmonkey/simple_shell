@@ -49,7 +49,7 @@ by the output name it was given.
 .PP
 The turtle shell will compile with the following:
 .PP
-gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
+.B gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
 .PP
 .SH PIPELINES
 pipeline  is a sequence of one or more commands separated by the character |.  The format\
