@@ -76,17 +76,17 @@ The user can also utilize the command `ctrl D` which will just exit. When the co
 * `Authors`: File with list of contributing authors
 * `man_1_simple_shell`: File for executing man page on the turtle shell
 * `holberton.h` : Header file, contains all prototypes for funcitons used, as well as libriaries
-* `_getline.c`:
-* `built_ins.c`:
-* `error_switch.c`:
-* `exec_cmd.c`:
-* `execute_built.c`:
-* `helper1.c`:
+* `_getline.c`: Gets line from prompt
+* `built_ins.c`: Commands built in 
+* `error_switch.c`: Switch cases for errors
+* `exec_cmd.c`: Execute commands
+* `execute_built.c`: Execute built ins being called
+* `helper1.c`: 
 * `helper2.c`:
-* `hsh.c`:
+* `hsh.c`: The file where all functions are being called
 * `init_free.c`:
-* `math_helper.c`:
-* `prompt.c`:
+* `math_helper.c`: 
+* `prompt.c`: Prompt creator deals with interactive non-interactive
 
 
 
