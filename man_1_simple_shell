@@ -90,10 +90,10 @@ To exit out of the shell user can utilize exit. Exits program with status 0.
 .SH SEE ALSO
 .I Nothing else
 .SH BUGS
-Disclosure this program takes no more than 1024,\ 
-using more than alloted 1024 will cause segmentation fault or unpredictable behavior.\
+Disclosure this program takes no more than 1024,
+using more than alloted 1024 will cause segmentation fault or unpredictable behavior.
 .PP
-The following variables take a buffersize of 1024:\
+The following variables take a buffersize of 1024:
 .PP
 .B PATH_TOKENS
 .B CMD_TOKENS
