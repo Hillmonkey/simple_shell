@@ -56,15 +56,13 @@ pipeline  is a sequence of one or more commands separated by the character |.  T
 for a pipeline is:
 .PP
 .B [echo command  | command2 ...etc. ./hsh
-       
-       
+.PP       
 If the user inputs piplines or calls  non-interactive mode the ghost shell should\
 funciton and execute said commands. An example of non-interactive mode input:
 .PP
 .B $ echo 'ls -a' | ./hsh
 .PP
 .PP
-.RE 
 Another example of non interactive mode:
 .PP
 .B $ cat some_file | ./hsh
