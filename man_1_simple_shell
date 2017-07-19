@@ -1,11 +1,8 @@
 .TH Turtle 1 "20 July 2017" "version 1.0" "Programmer's Manual"
 
-
-
 .SH NAME
 .B Turtle Shell (hsh)
 - command interpreter (shell)
-
 
 .SH SYNOPSIS
 .PP
@@ -15,13 +12,11 @@
 .PP
 .B hsh is Copyright (C) 2017-2017 by the Holberton Student Foundation, Inc.
 
-
-
 .PP
 .B 
 .SH DESCRIPTION
-The turtle shell is a command that reads lines from either a file or the termi- \
-nal, interprets them, and generally executes other commands. It is the \ 
+The turtle shell is a command that reads lines from either a file or the terminal,\ 
+interprets them, and generally executes other commands. It is the \ 
 program that is running when a user logs into the system. The shell implements a language \ 
 that has flow control contructs, a macro facility that provides a variety of features in addition to data \storage, along withe built in history and line editing capabilities. It also has features to \
 aid interactive use and has the advantage that the interpretative language is common to both interactive\ and non-interactive use (shell scripts). Commands can be typed directly to the running shell or can be put\ into a file and the file can be executed directly by the shell.
@@ -30,8 +25,6 @@ aid interactive use and has the advantage that the interpretative language is co
 $PATH:
 .PP
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
-
-
 
 .PP
 Turtle shell has two builtinin commands it also integrates with other commands \
@@ -56,13 +49,12 @@ by the output name it was given.
 .PP
 .SH The turtle shell will compile with the following:
 gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
-
-
 .PP
 .SH PIPELINES
 pipeline  is a sequence of one or more commands separated by the character |.  The format\
-for a pipeline is:\
-[echo command  | command2 ...etc. ./hsh
+for a pipeline is:
+.PP
+.B [echo command  | command2 ...etc. ./hsh
        
        
 If the user inputs piplines or calls  non-interactive mode the ghost shell should\
@@ -77,12 +69,9 @@ funciton and execute said commands. An example of non-interactive mode input:
 .B $ cat some_file | ./hsh
 .PP
 
-
 .SH OPTIONS
 The turtle shell does not take any options but does utilize \
 extern char **environ. 
-
- 
 
 .B
 .PP
