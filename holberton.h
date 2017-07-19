@@ -46,7 +46,7 @@ typedef struct shenv
 	char *linebuf;
 	char **av;
 	char *cmd_tokens[BUFSIZE];
-	char *path;
+	char path[STR_BUF];
 	char *path_tokens[BUFSIZE];
 	char full_path[STR_BUF];
 	ssize_t linelen;
@@ -101,6 +101,7 @@ void errors(char error_msg);
 void init_env(shenv_t *shell_env);
 int init_cmd_tokens(shenv_t *se);
 int init_path_tokens(shenv_t *se);
+int free_all(shenv_t *se);
 
 /* math_helper.c */
 int itoa(int n, char s[]);
@@ -118,7 +119,5 @@ void _puts_err(char *str);
 int is_interactive(int fd, struct stat buff);
 
 /* helper3.c */
-/* int prompt(int fd, struct stat buf); */
-/* char **tokenize(char **str, char **tokens); */
 
 #endif /* HOLBER_H */

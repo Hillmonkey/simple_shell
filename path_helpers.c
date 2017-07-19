@@ -28,11 +28,13 @@ char *get_EV(char *var)
 void build_path_array(shenv_t *se)
 {
 	int i;
-	char *path, *tmp;
+	char *tmp;
 
 	init_path_tokens(se);
-	path = get_EV("PATH");
-	tmp = strtok(path, "=");
+	init_char_buffer(se->path, STR_BUF);
+	se->path = get_EV("PATH");
+	/* path = get_EV("PATH"); */
+	tmp = strtok(se->path, "=");
 	for (i = 0; tmp; i++)
 	{
 		se->path_tokens[i] = tmp = strtok(NULL, ":");
