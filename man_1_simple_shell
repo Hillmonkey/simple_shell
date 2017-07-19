@@ -45,9 +45,10 @@ To use the turtle shell the user needs to compile \
 using: gcc. The run the output file by calling it whether \
 by the output name it was given. 
 .PP
-.B EX: $ ./some_name or $ a./a.out.\
+.B EX: $ ./some_name or $ a./a.out.
 .PP
 The turtle shell will compile with the following:
+.PP
 gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
 .PP
 .SH PIPELINES
