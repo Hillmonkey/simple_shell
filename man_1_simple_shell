@@ -76,12 +76,11 @@ extern char **environ.
 .PP
 .SH BUILT-INS
 .PP
-.B There are two builtins in the shell.\
-
+There are two builtins in the shell.
 .PP
 .B env - 
 .PP
-tells the program to display all of the environment variables with thier values. \
+Tells the program to display all of the environment variables with thier values. \
 Also a way to access the values through the shell.
 .PP
 .B exit - 
