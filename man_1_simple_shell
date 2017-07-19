@@ -52,13 +52,13 @@ The turtle shell will compile with the following:
 .B gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
 .PP
 .SH PIPELINES
-pipeline  is a sequence of one or more commands separated by the character |.  The format\
-for a pipeline is:
-.PP
-.B [echo command  | command2 ...etc. ./hsh
+Pipeline  is a sequence of one or more commands separated by the character |.
 .PP       
-If the user inputs piplines or calls  non-interactive mode the ghost shell should\
-funciton and execute said commands. An example of non-interactive mode input:
+Turtle shell accepts input piped in when executed from command line, however turtle shell does not parse pipes internally.
+If the user inputs pipes in non-interactive mode the ghost shell should\
+function and execute said commands. 
+.PP
+An example of non-interactive mode input:
 .PP
 .B $ echo 'ls -a' | ./hsh
 .PP
