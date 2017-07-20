@@ -1,23 +1,22 @@
-.TH Turtle 1 "20 April 2017" "version 1.0" "Programmer's Manual"
-
-
+.TH Turtle 1 "20 July 2017" "version 1.0" "Programmer's Manual"
 
 .SH NAME
 .B Turtle Shell (hsh)
 - command interpreter (shell)
 
-
 .SH SYNOPSIS
 .PP
-.B ./hsh
+.B hsh [options] [file]
 
-
+.SH COPYRIGHT
+.PP
+.B hsh is Copyright (C) 2017-2017 by the Holberton Student Foundation, Inc.
 
 .PP
 .B 
 .SH DESCRIPTION
-The turtle shell is a command that reads lines from either a file or the termi- \
-nal, interprets them, and generally executes other commands. It is the \ 
+The turtle shell is a command that reads lines from either a file or the terminal,\ 
+interprets them, and generally executes other commands. It is the \ 
 program that is running when a user logs into the system. The shell implements a language \ 
 that has flow control contructs, a macro facility that provides a variety of features in addition to data \storage, along withe built in history and line editing capabilities. It also has features to \
 aid interactive use and has the advantage that the interpretative language is common to both interactive\ and non-interactive use (shell scripts). Commands can be typed directly to the running shell or can be put\ into a file and the file can be executed directly by the shell.
@@ -27,65 +26,80 @@ $PATH:
 .PP
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:
 
-
-
 .PP
 Turtle shell has two builtinin commands it also integrates with other commands \
-that can be located in the PATH. The output of ghost shell is to replicate \
-exactly as the shell 'sh' or 'bash'.
+that can be located in the PATH. The output of turtle shell is to replicate \
+exactly as the shell 'sh'.
 .PP
-.B $ man bash
+.B $ man sh
 . Turtle Shell\
 The turtle shell takes commands from files, shell scripts and user input in both interactive or non-interactive mode.
+
+.SH OPTIONS
+.PP
+.B Turtle shell does not take any options from command line
+
 
 .SH INITIALIZATION
 To use the turtle shell the user needs to compile \
 using: gcc. The run the output file by calling it whether \
 by the output name it was given. 
 .PP
-.B EX: $ ./some_name or $ a./a.out.\
+.B EX: $ ./some_name or $ a./a.out.
 .PP
-.SH The turtle shell will compile with the following:
-gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
-
-
+The turtle shell will compile with the following:
 .PP
-If the user inputs piplines or calls  non-interactive mode the ghost shell should\
-funciton and execute said commands. An example of non-interactive mode input:
+.B gcc -Wall -Wextra -Werror -pedantic *.c -o hsh
+.PP
+.SH PIPELINES
+Pipeline  is a sequence of one or more commands separated by the character |.
+.PP       
+Turtle shell accepts input piped in when executed from command line, however turtle shell does not parse pipes internally.
+If the user inputs pipes in non-interactive mode the ghost shell should\
+function and execute said commands. 
+.PP
+An example of non-interactive mode input:
 .PP
 .B $ echo 'ls -a' | ./hsh
 .PP
 .PP
-.RE 
-.SH Another example of non interactive mode:
+Another example of non interactive mode:
 .PP
 .B $ cat some_file | ./hsh
 .PP
-
 
 .SH OPTIONS
 The turtle shell does not take any options but does utilize \
 extern char **environ. 
 
- 
-
-
-
 .B
 .PP
 .SH BUILT-INS
 .PP
-.B There are two builtins in the shell.\
-
+There are two builtins in the shell.
 .PP
-env - tells the program to display all of the environment variables with thier values. \
+.B env - 
+.PP
+Tells the program to display all of the environment variables with thier values. \
 Also a way to access the values through the shell.
 .PP
-exit - To exit out of the shell user can utilize exit. Exits program with status 0.\
-
+.B exit - 
+.PP
+To exit out of the shell user can utilize exit. Exits program with status 0.
+.PP
 .SH SEE ALSO
 .I Nothing else
 .SH BUGS
-No Known Bugs
+Disclosure this program takes no more than 1024,
+using more than alloted 1024 will cause segmentation fault or unpredictable behavior.
+.PP
+The following variables take a buffersize of 1024:
+.PP
+.B PATH_TOKENS
+.PP
+.B CMD_TOKENS
+.PP
+.B FULL_PATH
+.PP
 .SH AUTHORS
 .B Wendy Segura and Larry Madeo
