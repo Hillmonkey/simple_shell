@@ -70,7 +70,7 @@ typedef struct built_s
 
 } built_t;
 
-/*builtins*/
+/* built_ins.c */
 int execute_builtin(shenv_t *se);
 int built_exit(shenv_t *se);
 int built_p_env(shenv_t *se);

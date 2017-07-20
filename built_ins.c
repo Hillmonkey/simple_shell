@@ -8,8 +8,7 @@
 int built_exit(shenv_t *se)
 {
 	UNUSED(se);
-	_puts("built_exit\n");
-	return (EXIT_SUCCESS);
+	_exit(EXIT_SUCCESS);
 }
 
 /**
