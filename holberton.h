@@ -58,12 +58,17 @@ typedef struct shenv
 	struct stat buf;
 	} shenv_t;
 
+/**
+ * struct built_s - struct for names of built in funcs  & func pointers
+ * @name: name of function as called from shell command line
+ * @p: pointer to function associated with name
+ **/
 typedef struct built_s
 {
 	char *name;
 	int (*p)(shenv_t *);
 
-}built_t;
+} built_t;
 
 /*builtins*/
 int execute_builtin(shenv_t *se);
@@ -91,7 +96,7 @@ char *_strdup(char *str);
 char *str_concat(char *s1, char *s2);
 int init_char_buffer(char *buffer, int bufsize);
 int init_Cptr_buffer(char **buffer, int bufsize);
-void tokenize(shenv_t *se); /* tokenize the getline */
+void tokenize(shenv_t *se);
 
 /* error_switch.c */
 void errors(char error_msg);
