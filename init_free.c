@@ -13,7 +13,7 @@ void init_env(shenv_t *se)
 	se->linelen = 0;
 	se->linesize = 0;
 	se->counter = 0;
-	/* get rid of se->my_argv[] later */
+	init_str_buffer(se->full_path, STR_BUF);
 }
 
 
@@ -76,7 +76,7 @@ int init_str_buffer(char *buf, int bufsize)
 {
 	int i;
 
-	for(i = 0; i < bufsize; ++i)
+	for (i = 0; i < bufsize; ++i)
 		buf[i] = '\0';
 	return (EXIT_SUCCESS);
 }

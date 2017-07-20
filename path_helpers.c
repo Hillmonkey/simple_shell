@@ -3,7 +3,7 @@
 /**
  * get_EV - get specified Environ Variable from environ
  * @var: variable name to search for in Environment Variables
- * Return: pointer into Environ, or NULL if no match
+ * Return: malloc'ed duplicate of env_var, or NULL if no match
  **/
 char *get_EV(char *var)
 {
@@ -25,20 +25,22 @@ char *get_EV(char *var)
  * build_path_array - build array of paths in se->path_tokens using $PATH
  * @se: pointer to shell environment variable
  **/
+
 void build_path_array(shenv_t *se)
 {
 	int i;
-	char *tmp;
+	char *tmp, *tmp_path;
 
 	init_path_tokens(se);
 	init_char_buffer(se->path, STR_BUF);
-	se->path = get_EV("PATH");
-	/* path = get_EV("PATH"); */
+	/* se->path = get_EV("PATH"); */
+	tmp_path = get_EV("PATH");
+	copy_into_strbuf(se->path, STR_BUF, tmp_path);
+	free(tmp_path);
 	tmp = strtok(se->path, "=");
 	for (i = 0; tmp; i++)
 	{
 		se->path_tokens[i] = tmp = strtok(NULL, ":");
-		/* printf("se->path_tokens[%d] = %s\n", i, tmp); */
 	}
 }
 
