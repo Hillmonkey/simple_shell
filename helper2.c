@@ -83,7 +83,7 @@ int init_Cptr_buffer(char **buffer, int bufsize)
 
 	for (i = 0; i < bufsize; i++)
 	{
-		printf("Cptr[%d] = %p\n", i, buffer[i]);
+		/* printf("Cptr[%d] = %p\n", i, buffer[i]); */
 		/* buffer[i] = default_value; */
 		buffer[i] = NULL;
 	}
