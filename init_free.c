@@ -13,7 +13,7 @@ void init_env(shenv_t *se)
 	se->linelen = 0;
 	se->linesize = 0;
 	se->counter = 0;
-	/* get rid of se->my_argv[] later */
+	init_str_buffer(se->full_path, STR_BUF);
 }
 
 
@@ -54,3 +54,29 @@ int init_path_tokens(shenv_t *se)
 	return (EXIT_SUCCESS);
 }
 
+/**
+ * free_all - frees all malloc'ed memory
+ * @se: pointer to Shell Environment struct
+ * Return: success on successful execution
+ **/
+int free_all(shenv_t *se)
+{
+	free(se->linebuf);
+	free(se->path);
+	return (EXIT_SUCCESS);
+}
+
+/**
+ * init_str_buffer - wipe contents of a string buffer to null bytes
+ * @buf: string buffer to be wiped
+ * @bufsize: size of string buffer
+ * Return: EXIT_SUCCESS on successful execution
+ **/
+int init_str_buffer(char *buf, int bufsize)
+{
+	int i;
+
+	for (i = 0; i < bufsize; ++i)
+		buf[i] = '\0';
+	return (EXIT_SUCCESS);
+}

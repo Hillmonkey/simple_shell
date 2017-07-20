@@ -46,7 +46,7 @@ typedef struct shenv
 	char *linebuf;
 	char **av;
 	char *cmd_tokens[BUFSIZE];
-	char *path;
+	char path[STR_BUF];
 	char *path_tokens[BUFSIZE];
 	char full_path[STR_BUF];
 	ssize_t linelen;
@@ -91,8 +91,7 @@ char *_strdup(char *str);
 char *str_concat(char *s1, char *s2);
 int init_char_buffer(char *buffer, int bufsize);
 int init_Cptr_buffer(char **buffer, int bufsize);
-/* FYI tokenize  = tokenize getline string */
-void tokenize(shenv_t *se);
+void tokenize(shenv_t *se); /* tokenize the getline */
 
 /* error_switch.c */
 void errors(char error_msg);
@@ -101,6 +100,8 @@ void errors(char error_msg);
 void init_env(shenv_t *shell_env);
 int init_cmd_tokens(shenv_t *se);
 int init_path_tokens(shenv_t *se);
+int free_all(shenv_t *se);
+int init_str_buffer(char *buf, int bufsize);
 
 /* math_helper.c */
 int itoa(int n, char s[]);
@@ -118,7 +119,6 @@ void _puts_err(char *str);
 int is_interactive(int fd, struct stat buff);
 
 /* helper3.c */
-/* int prompt(int fd, struct stat buf); */
-/* char **tokenize(char **str, char **tokens); */
+int copy_into_strbuf(char buf[], int bufsize, char *src);
 
 #endif /* HOLBER_H */

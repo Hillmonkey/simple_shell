@@ -26,7 +26,6 @@ int built_p_env(shenv_t *se)
 	{
 		perror("hsh environment list is NULL");
 		return (EXIT_FAILURE);
-
 	}
 
 	for (; environ[i] != NULL; i++)
