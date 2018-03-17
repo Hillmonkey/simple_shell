@@ -1,8 +1,8 @@
 #include "holberton.h"
 
 /**
- * absolute_path - returns boolean indicating of path string
- *                 started with '/', thus being absolute
+ * absolute_path - returns boolean indicating if path-string
+ *                 starts with '/', thus being an absolute path
  * @se: pointer to shell environment struct
  * Return: 1 if TRUE, 0 if FALSE, -1 if ERROR
  **/
