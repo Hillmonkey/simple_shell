@@ -77,7 +77,7 @@ int built_p_env(shenv_t *se);
 int number_builtins(built_t built_in[]);
 
 /* hsh.c -- main */
-int absolute_ath(shenv_t *se);
+int absolute_path(shenv_t *se);
 
 /* exec_cmd.c */
 void exec_cmd(shenv_t *se);
