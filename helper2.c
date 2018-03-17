@@ -90,7 +90,7 @@ int init_Cptr_buffer(char **buffer, int bufsize)
 	return (EXIT_SUCCESS);
 }
 /**
- * tokenize - accepts string from getline, creates null-terminated toke array
+ * tokenize - accepts string from getline, creates null-terminated token array
  *            token array stored here: se->cmd_tokens[]
  * @se: shell env struct that contains many things, including:
  *      se.linebuf (contains string from getline)
