@@ -5,18 +5,19 @@
 
 
 
-<h1><p align="center">Turtle Shell</h1></p></font>
+<h1><p align="center">Simple Shell</h1></p></font>
 
 
 
 
 
-# TSH
-Turtle Shell also known as the shell is a simple command line prompt that takes the most basics of commands that are present in the bash shell and runs them. This shell was built as a project for Holberton School.
+# Simple Shell
+Simple Shell is a command line interface that accepts commands entered by the user and executes them. This shell is the final project of the first 3 months at Holberton School.
 
-`the shell` works like the bash and other basic shells.
+Simple Shell allows the user to run executable files that in folders specified by the `$PATH` environmental variable, in addition to executable files with explicitly specified paths.
 
-The shell works by being compiled using GCC 4.8.5 compiler or later versions. The shell can compile using `gcc 4.8.4 -Wall -Werror -Wextra -pedantic *.c -o shell`.
+How to compile from source: `gcc 4.8.4 -Wall -Werror -Wextra -pedantic *.c -o shell`.
+Use gcc 4.8.4 or later version.
 
 ## Example of how to launch the shell after compiling:
 `./shell`
