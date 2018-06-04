@@ -5,3 +5,4 @@ error*
 *.swo
 *.TEMP
 a.out
+shell
