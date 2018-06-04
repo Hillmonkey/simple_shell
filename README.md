@@ -16,8 +16,8 @@ Simple Shell is a command line interface that accepts commands entered by the us
 
 Simple Shell allows the user to run executable files that in folders specified by the `$PATH` environmental variable, in addition to executable files with explicitly specified paths.
 
-How to compile from source: `gcc 4.8.4 -Wall -Werror -Wextra -pedantic *.c -o shell`.
-Use gcc 4.8.4 or later version.
+How to compile from source: `gcc -Wall -Werror -Wextra -pedantic *.c -o shell`.
+This code was compiled using gcc, version 4.8.4.
 
 ## Example of how to launch the shell after compiling:
 `./shell`
